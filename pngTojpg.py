@@ -6,7 +6,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
 NOW_DIR = os.path.dirname(os.path.realpath(__file__))
-CON_DIR = '\\'.join(NOW_DIR.split('\\')[:-1])
+CON_DIR = '\\'.join(NOW_DIR.split('\\')[:-1]) + "\\Crawling\\oldImage"
 print(CON_DIR)
 
 def search(dirname):
@@ -49,22 +49,18 @@ def infoWrite(warringInfo):
         pc += 1
     f.close()
 
-warring = ("Hello", "I'm", "iPhone", "6S", "Plus")
-error = ("Apple", "can", "fly", "in", "sky")
-
-Info = {}
-Info["extension"] = warring
-Info["error"] = error
 
 # infoWrite(Info)
 
 if __name__ == "__main__":
     list = searchAll(CON_DIR)
+    print(CON_DIR)
     for image in list:
         print(">>{0}".format(image))
-        im = Image.open(image)
-        im = im.convert("RGB")
-        im.save(image[:-3]+"jpg")
+        os.remove(image)
+        # im = Image.open(image)
+        # im = im.convert("RGB")
+        # im.save(image[:-3]+"jpg")
 
-print(search(CON_DIR))
-print(searchAll(CON_DIR))
+# print(search(CON_DIR))
+# print(searchAll(CON_DIR))
